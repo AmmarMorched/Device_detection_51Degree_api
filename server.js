@@ -1,13 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
+mongoose.set('strictQuery', false)
+
 const path = require('path');
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/Device')
 
-// Define a schema for the device data
+const app = express();
+
+app.use(express.json());
+// Connect to MongoDB
+const start = async()=>{
+    try{
+        await mongoose.connect('mongodb+srv://morcheda62:sYYqEULwRkfm698Y@device8detection.okrnj.mongodb.net/?retryWrites=true&w=majority&appName=device8detection');
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    } catch (e) {
+        console.log(e.message)
+    }
+};
+
 const deviceSchema = new mongoose.Schema({
     isMobile: Boolean,
     hardwareVendor: String,
@@ -19,23 +31,8 @@ const deviceSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Create a model from the schema
-const Device = mongoose.model('dev', deviceSchema);
+const Device = mongoose.model('dev', deviceSchema); // Ensure this line is correctly placed
 
-const db = mongoose.connection;
-
-db.on('error', (err) => {
-    console.log(err);
-});
-
-db.once('open', () => {
-    console.log('Database Connection Established!');
-});
-
-const app = express();
-
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // Serve the index.html file on the root route
 app.get('/', (_req, res) => {
@@ -63,6 +60,5 @@ app.post('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+
+start();
