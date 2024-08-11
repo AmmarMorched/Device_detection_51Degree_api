@@ -3,21 +3,27 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "build":"netlify deploy --prod"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@capacitor/android": "6.1.2",
+    "@capacitor/app": "6.0.1",
+    "@capacitor/core": "6.1.2",
+    "@capacitor/haptics": "6.0.1",
+    "@capacitor/keyboard": "6.0.2",
+    "@capacitor/status-bar": "6.0.1",
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "mongoose": "^8.5.2",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.4",
-    "netlify-cli":"^12.7.2",
-    "netlify-lambda":"^2.0.15",
-    "serverless-http":"^2.7.0"
+    "serverless-http": "^2.7.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "6.1.2"
   }
 }
