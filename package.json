@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build":"netlify deploy --prod"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,8 @@
     "mongoose": "^8.5.2",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.4",
-    "vercel": "^35.2.4"
+    "netlify-cli":"^12.7.2",
+    "netlify-lambda":"^2.0.15",
+    "serverless-http":"^2.7.0"
   }
 }

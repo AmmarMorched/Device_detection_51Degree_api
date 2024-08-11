@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false)
-
+const serverless = require('serverless-http')
+const router = exxpress.Router();
 const path = require('path');
 
 
@@ -36,7 +37,7 @@ const Device = mongoose.model('dev', deviceSchema); // Ensure this line is corre
 
 // Serve the index.html file on the root route
 app.get('/', (_req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.post('/', (req, res) => {
@@ -62,3 +63,6 @@ app.post('/', (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 start();
+
+app.use('/',router);
+module.exports.handler = serverless(app)
