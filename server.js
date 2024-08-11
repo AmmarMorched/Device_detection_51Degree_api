@@ -45,7 +45,7 @@ app.post('/', (req, res) => {
     
     // Create a new device document using the model
     const device = new Device(deviceData);
-    
+    const hardwareModel = deviceData.hardwareModel;
     // Save the document to the database
     device.save()
         .then(savedDevice => {
@@ -56,6 +56,8 @@ app.post('/', (req, res) => {
             console.error('Failed to save device data:', err); // Log any errors
             res.status(500).json({ error: 'Failed to save device data', details: err });
         });
+
+    
 });
 
 const PORT = process.env.PORT || 3000;
