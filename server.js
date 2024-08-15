@@ -27,6 +27,7 @@ const deviceSchema = new mongoose.Schema({
     fullscreen: Boolean,
     screenPixelsWidth: Number,
     screenPixelsHeight: Number,
+    ecoScore: Number,
 }, { timestamps: true });
 
 // Create a model from the schema
@@ -60,7 +61,14 @@ app.post('/', (req, res) => {
     
 });
 
+app.get('/', (req,res) =>{
+    
+})
+
+
+
 const PORT = process.env.PORT || 3000;
+
 
 start();
 
